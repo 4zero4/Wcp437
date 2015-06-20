@@ -104,7 +104,7 @@ public class AsciiPanel extends JPanel {
     private int widthInCharacters;
     private int heightInCharacters;
     private int charWidth = 9;
-    private int charHeight = 16;
+    private int charHeight = 16;//16
     private Color defaultBackgroundColor;
     private Color defaultForegroundColor;
     private int cursorX;
@@ -312,7 +312,7 @@ public class AsciiPanel extends JPanel {
                 Color fg = foregroundColors[x][y];
 
                 LookupOp op = setColors(bg, fg);
-                BufferedImage img = op.filter(glyphs[chars[x][y]], null);
+                BufferedImage img = op.filter(glyphs[chars[x][y]], null);// <--- MAGIA NEGRA!!
                 offscreenGraphics.drawImage(img, x * charWidth, y * charHeight, null);
                 
                 oldBackgroundColors[x][y] = backgroundColors[x][y];

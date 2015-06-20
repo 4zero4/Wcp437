@@ -1,7 +1,5 @@
 package rltut;
 
-import java.awt.Rectangle;
-
 import javax.swing.JFrame;
 
 import asciiPanel.AsciiPanel;
@@ -9,29 +7,38 @@ import asciiPanel.AsciiPanel;
 public class ApplicationMain extends JFrame {
 	private static final long serialVersionUID = 1060623638149583738L;
 
+	static String lines[] = {
+			" $$$$$$\\  $$\\        $$$$$$\\        $$\\      $$\\ $$\\   $$\\ $$\\   $$\\ $$$$$$$\\   $$$$$$\\  ",
+			"$$  __$$\\ $$ |      $$  __$$\\       $$$\\    $$$ |$$ |  $$ |$$$\\  $$ |$$  __$$\\ $$  __$$\\ ",
+			"$$ /  $$ |$$ |      $$ /  $$ |      $$$$\\  $$$$ |$$ |  $$ |$$$$\\ $$ |$$ |  $$ |$$ /  $$ |",
+			"$$ |  $$ |$$ |      $$$$$$$$ |      $$\\$$\\$$ $$ |$$ |  $$ |$$ $$\\$$ |$$ |  $$ |$$ |  $$ |",
+			"$$ |  $$ |$$ |      $$  __$$ |      $$ \\$$$  $$ |$$ |  $$ |$$ \\$$$$ |$$ |  $$ |$$ |  $$ |",
+			"$$ |  $$ |$$ |      $$ |  $$ |      $$ |\\$  /$$ |$$ |  $$ |$$ |\\$$$ |$$ |  $$ |$$ |  $$ |",
+			" $$$$$$  |$$$$$$$$\\ $$ |  $$ |      $$ | \\_/ $$ |\\$$$$$$  |$$ | \\$$ |$$$$$$$  | $$$$$$  |",
+			" \\______/ \\________|\\__|  \\__|      \\__|     \\__| \\______/ \\__|  \\__|\\_______/  \\______/ ",};
+
 	private AsciiPanel terminal;
 
 	public ApplicationMain() {
 		super();
-		terminal = new AsciiPanel();
-		terminal.write("ASCII ART FUNCIONANDO!", 1, 1);
+		terminal = new AsciiPanel(100,20);
 		add(terminal);
 		pack();
 	}
 
 	public static void main(String[] args) {
 		ApplicationMain app = new ApplicationMain();
+		app.setResizable(false);
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
-		Rectangle r = new Rectangle();
-		r.setBounds(3, 3, 15, 20);
-
-		for (int i = 0; i < 10; i++) {
-			app.terminal.write("Ola", AsciiPanel.red);
-			app.terminal.setCursorY(app.terminal.getCursorY() + 1);
-			wasteTime(200);
+		app.terminal.setCursorPosition(5, 2);
+		for (String line : lines) {
+			app.terminal.write(line);
+			app.terminal.setCursorPosition(5, app.terminal.getCursorY()+1);
 			app.repaint();
+			wasteTime(100);
 		}
+
 	}
 
 	private static void wasteTime(int milis) {
